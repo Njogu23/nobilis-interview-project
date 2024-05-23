@@ -6,7 +6,14 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/login")
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      fetch("http://localhost:3000/login", {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -15,19 +22,29 @@ function App() {
       })
       .then((u) => setUser(u.status.data.user))
       .catch((error) => console.error(error));
+    }
   }, []);
-  // console.log(user)
+
+  const handleLogin = (user, token) => {
+    localStorage.setItem('authToken', token);
+    setUser(user);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setUser(null);
+  };
 
   if (!user) {
-    return <SignInToggle onLogin={setUser} />;
+    return <SignInToggle onLogin={handleLogin} />;
   }
 
   return (
     <div>
-      Hello world
-      <Navbar onLogout={setUser}/>
+      Welcome {`${user.username}`}
+      <Navbar onLogout={handleLogout} />
     </div>
-  )
+  );
 }
 
 export default App;

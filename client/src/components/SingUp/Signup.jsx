@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Signup.css";
 
 function Signup({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -19,7 +20,10 @@ function Signup({ onLogin }) {
       }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((user) => onLogin(user));
+        res.json().then((data) => {
+          const token = data.token; // Assuming your backend response contains the token
+          onLogin(data.status.data.user, token);
+        });
       } else {
         res.json().then((err) => setErrors(err.errors));
       }
@@ -60,7 +64,7 @@ function Signup({ onLogin }) {
         <br />
         <button type="submit" className='btn'>Sign Up</button>
       </form>
-          <h2 >{errors}</h2>
+      <h2 className='error'>{errors}</h2>
     </div>
   );
 }

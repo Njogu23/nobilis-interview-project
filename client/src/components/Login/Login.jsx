@@ -20,14 +20,17 @@ function Login({ onLogin }) {
     })
     .then((res) => {
       if (res.ok) {
-        res.json().then((u) => onLogin(u.status.data.user));
+        console.log(res)
+        res.json().then((data) => {
+          console.log(data.status) // Assuming your backend response contains the token
+          onLogin(data.status.data.user);
+        });
       } else {
         res.json().then((err) => setErrors(err.error));
       }
     })
     .catch((error) => console.error('Error:', error));
   }
-  console.log(errors)
 
   return (
     <div className="login">
@@ -51,7 +54,7 @@ function Login({ onLogin }) {
         <br />
         <button className="btn" type="submit">Login</button>
       </form>
-          <h2 className='error'>{errors}</h2>
+      <h2 className='error'>{errors}</h2>
     </div>
   );
 }

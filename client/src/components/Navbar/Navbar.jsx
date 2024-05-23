@@ -3,11 +3,22 @@ import React from 'react'
 function Navbar({onLogout}) {
 
   function handleLogout() {
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+        console.log(token);
+        console.log(token === true);
+      }
+
     fetch("/logout", {
       method: "DELETE",
-    }).then(()=>onLogout())
+    }).then(()=>{
+        localStorage.removeItem('authToken')
+        onLogout()
+    })
   }
-    
+
+  
   return (
     <div className="nav">
       <div>
