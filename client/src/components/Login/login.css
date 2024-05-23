@@ -1,0 +1,44 @@
+.forms{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .inputs{
+    padding: 8px;
+    border-radius: 8px;
+    width: 250px;
+    align-self: center;
+    margin: 10px;
+  }
+
+  .btn{
+    font-size: 16px;
+    width: 270px;
+    height: 40px;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-sec{
+    width: 60px;
+    height: 30px;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(229, 236, 236);
+  }
+
+.error{
+    color: red;
+    font-size: small;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 100;
+}
+
+.login{
+    text-align: center;
+}
