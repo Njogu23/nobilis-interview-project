@@ -22,11 +22,27 @@ function Signup() {
       }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((data) => {
-          login(data.status.data.user, data.status.data.token);
-        });
+        
+        fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            user: { email, password }
+          }),
+        }).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              login(data.status.data.user);
+            });
+          } else {
+            response.json().then((err) => setErrors(err.error));
+          }
+        }).catch((error) => console.error('Error:', error));
       } else {
-        res.json().then((err) => setErrors(err.status.message));
+        res.json().then((err) => setErrors(err.error));
       }
     }).catch((error) => console.error('Error:', error));
   }

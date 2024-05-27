@@ -1,6 +1,6 @@
 # Installation Guide
 
-Welcome to MyApp! This guide will walk you through the steps to install and run MyApp on your local environment.
+This guide will walk you through the steps to install and run the project on your local environment.
 
 ## Prerequisites
 
