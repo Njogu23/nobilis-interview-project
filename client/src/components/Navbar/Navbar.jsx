@@ -1,44 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import "./navbar.css";
+import { MyContext } from '../../MyContext';
 
-function Navbar({onLogout}) {
+function Navbar() {
+  const { user, logout } = useContext(MyContext);
 
   function handleLogout() {
-    const token = localStorage.getItem('authToken');
-
-    if (token) {
-        console.log(token);
-        console.log(token === true);
-      }
-
     fetch("/logout", {
       method: "DELETE",
-    }).then(()=>{
-        localStorage.removeItem('authToken')
-        onLogout()
-    })
+    }).then(() => {
+      logout();
+    });
   }
 
-  
   return (
     <div className="nav">
-      <div>
-        <button id="btn-nav" 
-          style={{
-            fontSize:"15px",
-            background:"gray",
-            color:"white",
-            padding:"15px",
-            cursor:"pointer",
-            margin:"2px",
-            border:"none"    
-              }} 
-         onMouseOver={(e)=> e.target.style.background = "#D3D3D3"} 
-         onMouseOut={(e)=> e.target.style.background = "gray" } onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
+      <p>Welcome {`${user.username}`}</p>
+      <button id="btn-nav" 
+        style={{
+          fontSize:"15px",
+          background:"gray",
+          color:"white",
+          padding:"15px",
+          cursor:"pointer",
+          margin:"2px",
+          border:"none"    
+        }} 
+        onMouseOver={(e) => e.target.style.background = "#D3D3D3"} 
+        onMouseOut={(e) => e.target.style.background = "gray"} 
+        onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 }
 
-export default Navbar
+export default Navbar;

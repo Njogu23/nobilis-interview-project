@@ -10,7 +10,9 @@ const SignInToggle = ({onLogin}) => {
             margin: "30px"
         }}>
             {active ? (
-                <div>
+                <div style={{
+                    textAlign: "center"
+                }}>
                     <Login onLogin={onLogin}/>
                     <div style={{
                          border: "none",
@@ -21,7 +23,9 @@ const SignInToggle = ({onLogin}) => {
                     </div>
                 </div>
             ) : (
-                <div>
+                <div style={{
+                    textAlign: "center"
+                }}>
                     <Signup onLogin={onLogin}/>
                     <div style={{
                          border: "none",

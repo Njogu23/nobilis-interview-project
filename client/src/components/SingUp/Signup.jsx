@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import "./Signup.css";
+import { MyContext } from '../../MyContext';
 
-function Signup({ onLogin }) {
+function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
+  const { login } = useContext(MyContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,11 +23,10 @@ function Signup({ onLogin }) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          const token = data.token; // Assuming your backend response contains the token
-          onLogin(data.status.data.user, token);
+          login(data.status.data.user, data.status.data.token);
         });
       } else {
-        res.json().then((err) => setErrors(err.errors));
+        res.json().then((err) => setErrors(err.status.message));
       }
     }).catch((error) => console.error('Error:', error));
   }

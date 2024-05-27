@@ -1,48 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useContext } from 'react';
 import SignInToggle from "./components/SignInToggle/SignInToggle";
 import Navbar from "./components/Navbar/Navbar";
+import { MyContext } from './MyContext';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      fetch("http://localhost:3000/login", {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then((r) => {
-        if (r.ok) {
-          return r.json();
-        }
-        throw new Error("Failed to fetch user data");
-      })
-      .then((u) => setUser(u.status.data.user))
-      .catch((error) => console.error(error));
-    }
-  }, []);
-
-  const handleLogin = (user, token) => {
-    localStorage.setItem('authToken', token);
-    setUser(user);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    setUser(null);
-  };
+  const { user } = useContext(MyContext);
 
   if (!user) {
-    return <SignInToggle onLogin={handleLogin} />;
+    return <SignInToggle />;
   }
 
   return (
     <div>
-      Welcome {`${user.username}`}
-      <Navbar onLogout={handleLogout} />
+      <Navbar />
     </div>
   );
 }
