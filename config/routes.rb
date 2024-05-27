@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  namespace :api do
+    namespace :v1 do
+      get 'data', to: 'data#index'
+    end
+  end
+
   resources :users, only: [:index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
