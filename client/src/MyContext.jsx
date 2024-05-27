@@ -4,6 +4,9 @@ const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -35,8 +38,29 @@ const ContextProvider = ({ children }) => {
     setUser(null);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/v1/data");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
+
   return (
-    <MyContext.Provider value={{ user, login, logout }}>
+    <MyContext.Provider value={{ user, login, logout, data, loading, error }}>
       {children}
     </MyContext.Provider>
   );

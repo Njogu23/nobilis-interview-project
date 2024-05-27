@@ -6,9 +6,7 @@ const SignInToggle = ({onLogin}) => {
     const [ active, setActive ] = useState(true)
 
     return (
-        <div style={{
-            margin: "30px"
-        }}>
+        <div className='signup'>
             {active ? (
                 <div style={{
                     textAlign: "center"
@@ -19,7 +17,7 @@ const SignInToggle = ({onLogin}) => {
                          borderBottom: "1px solid #ccc",
                          margin: "16px 0"
                     }}>
-                        Don't have an account? <button onClick={()=> setActive(false)} className='btn-sec'>Sign In</button>
+                        Don't have an account? <button onClick={()=> setActive(false)} className='btn-nav'>Sign In</button>
                     </div>
                 </div>
             ) : (
@@ -32,7 +30,7 @@ const SignInToggle = ({onLogin}) => {
                          borderBottom: "1px solid #ccc",
                          margin: "16px 0"
                     }}>
-                        Already have an account? <button onClick={()=> setActive(true)} className='btn-sec'>Login</button>
+                        Already have an account? <button onClick={()=> setActive(true)} className='btn-nav'>Login</button>
                     </div>
                     
                 </div>

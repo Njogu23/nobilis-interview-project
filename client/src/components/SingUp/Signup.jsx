@@ -32,7 +32,7 @@ function Signup() {
   }
 
   return (
-    <div>
+    <div className="signup">
       <form className="forms" onSubmit={handleSubmit}>
         <h3 id="user">User Registration</h3>
         <label>Username</label>
@@ -63,9 +63,9 @@ function Signup() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="submit" className='btn'>Sign Up</button>
+        <button type="submit" className="btn">Sign Up</button>
       </form>
-      <h2 className='error'>{errors}</h2>
+      <h2 className="error">{errors}</h2>
     </div>
   );
 }
