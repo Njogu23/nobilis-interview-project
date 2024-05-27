@@ -1,24 +1,60 @@
-# README
+# Installation Guide
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to MyApp! This guide will walk you through the steps to install and run MyApp on your local environment.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+Before you begin, ensure you have the following installed on your machine:
 
-* System dependencies
+* Ruby (version 3.1.3 recommended)
+* Ruby on Rails (version 7.1.3 or higher)
+* Node.js (version 18.2.0 or higher)
+* npm (Node Package Manager, comes with Node.js)
+* Git
 
-* Configuration
+## Installation Steps
 
-* Database creation
+ ### 1. Clone the repository:
+ 
+ git clone https://github.com/Njogu23/nobilis-interview-project
 
-* Database initialization
+ ### 2. Navigate to the project directory
+ 
+ cd nobilis-interview-project
 
-* How to run the test suite
+ ### 3. Install Ruby dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
+ bundle install
 
-* Deployment instructions
+ ### 4. Setup the database
 
-* ...
+ rails db:create
+ rails db:migrate
+
+ ### 5. Start the Rails Server
+
+ rails server
+
+ ### 6. Navigate to client directory
+
+ cd client/
+
+ ### 7. Install Node.js dependencies
+
+ npm install
+
+ or
+
+ yarn install
+
+ ### 8. Start React Server
+
+ npm run dev
+
+ 
+
+    
+
+
+
+
