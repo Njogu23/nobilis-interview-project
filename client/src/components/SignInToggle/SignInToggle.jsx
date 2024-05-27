@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Login from '../Login/Login';
 import Signup from '../SingUp/Signup';
 
-const SignInToggle = ({onLogin}) => {
+const SignInToggle = () => {
     const [ active, setActive ] = useState(true)
 
     return (
@@ -11,7 +11,7 @@ const SignInToggle = ({onLogin}) => {
                 <div style={{
                     textAlign: "center"
                 }}>
-                    <Login onLogin={onLogin}/>
+                    <Login />
                     <div style={{
                          border: "none",
                          borderBottom: "1px solid #ccc",
@@ -24,7 +24,7 @@ const SignInToggle = ({onLogin}) => {
                 <div style={{
                     textAlign: "center"
                 }}>
-                    <Signup onLogin={onLogin}/>
+                    <Signup />
                     <div style={{
                          border: "none",
                          borderBottom: "1px solid #ccc",

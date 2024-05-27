@@ -23,10 +23,10 @@ function Login() {
     .then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          console.log(data)
+          // console.log(data)
           login(data.status.data.user, data.status.data.token);
-          console.log(data.status.data.user)
-          console.log(data.status.data.token)
+          // console.log(data.status.data.user)
+          // console.log(data.status.data.token)
         });
       } else {
         res.json().then((err) => setErrors(err.error));

@@ -39,24 +39,28 @@ const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/v1/data");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+    const fetchData = () => {
+      fetch("http://localhost:3000/api/v1/data")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((jsonData) => {
+          setData(jsonData);
+          setLoading(false);
+        })
+        .catch((error) => {
+        //   console.error("Error fetching data:", error);
+          setError(error.message);
+          setLoading(false);
+        });
     };
-
+  
     fetchData();
   }, []);
+  
   
 
   return (
